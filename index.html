@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Naiem - CSE student, WordPress developer, motion graphics enthusiast.">
     <title>Naiem</title>
 
@@ -411,12 +412,22 @@
                 padding: 18px;
             }
         }
+        /* ===================== */
         /* MINI SUB ICONS (HOVER REVEAL) */
+        /* ===================== */
+        
+        .skill-box {
+            position: relative;
+        }
         
         .sub-icons {
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            width: 100%;
             display: flex;
+            justify-content: center;
             gap: 6px;
-            margin-top: 8px;
             opacity: 0;
             transform: translateY(10px);
             transition: 0.4s ease;
@@ -480,6 +491,17 @@
             to {
                 transform: translateX(50%);
             }
+        }
+        /* skill logo and txt lift on hover */
+        
+        .skill-box i,
+        .skill-box .tooltip {
+            transition: transform 0.3s ease;
+        }
+        
+        .skill-box:has(.sub-icons):hover i,
+        .skill-box:has(.sub-icons):hover .tooltip {
+            transform: translateY(-15px);
         }
         /* ========================= */
         /* 🔥 CLEAN MOBILE FIX ONLY */
@@ -568,6 +590,18 @@
             .social-icons a {
                 font-size: 24px;
                 margin: 0 8px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .tooltip {
+                opacity: 1;
+            }
+            .tooltip {
+                position: static;
+                /* put it back into normal flow */
+                margin-top: 5px;
+                opacity: 1;
             }
         }
     </style>
@@ -838,13 +872,8 @@
 
         const sectionsList = ["home", "skills", "about", "contact"];
         let currentIndex = 0;
-        const sectionTitle = document.getElementById("sectionTitle");
 
         function updateSection() {
-            sectionTitle.textContent =
-                sectionsList[currentIndex].charAt(0).toUpperCase() +
-                sectionsList[currentIndex].slice(1);
-
             document.getElementById(sectionsList[currentIndex])
                 .scrollIntoView({
                     behavior: "smooth"
